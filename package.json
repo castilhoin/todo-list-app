@@ -1,0 +1,27 @@
+{
+  "name": "todo-list-app",
+  "version": "1.0.0",
+  "description": "To-do list app with Node.js and PostgreeSQL database.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node_modules/nodemon/bin/nodemon.js src/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/castilhoin/todo-list-app.git"
+  },
+  "author": "Pedro Castilho",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/castilhoin/todo-list-app/issues"
+  },
+  "homepage": "https://github.com/castilhoin/todo-list-app#readme",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
