@@ -11,15 +11,27 @@
     <h1 class="header__title">To-Do List App</h1>
   </header>
   <section class="tasks">
-    <form action="" id="taskForm">
-      <input id="inputText" type="text" name="newTask">
-      <button id="addItem" type="submit">Add</button>
+    <form action="/add" method="POST" id="taskForm">
+      <input id="inputText" type="text" name="newTask" placeholder="Add a new task">
+      <button id="addItem">Add</button>
     </form>
-    <ul class="tasks__list">
-      <% todos.forEach(todo => { %>
-        <li class="tasks__item">
-          <%= todo.name %>
-          <a href="#" class="tasks__btnDelete">Delete</a>
+    <h2>My Tasks</h2>
+    <ul class="todoList">
+      <% tasks.filter((item) => item.completed == false).forEach((task) => { %>
+        <li class="taskItem">
+          <input class="taskItem__checkbox" type="checkbox" name="check" value="<%= task.name %>">
+          <%= task.name %>
+          <a href="/update/<%= task.id %>" class="taskItem__btnEdit">Edit</a>
+          <a href="/delete/<%= task.id %>" class="taskItem__btnDelete">Delete</a>
+        </li>
+      <% }) %>
+    </ul>
+    <h2>Completed</h2>
+    <ul class="completedList">
+      <% tasks.filter((item) => item.completed == true).forEach((task) => { %>
+        <li>
+          <input type="checkbox">
+          <%= task.name %>
         </li>
       <% }) %>
     </ul>
