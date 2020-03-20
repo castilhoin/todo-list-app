@@ -2,17 +2,23 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
-const tasks = require('./tasks');
-app.use(bodyParser.urlencoded({ extended: true }));
+const db = require(path.join(__dirname, '..', 'config', 'database'));
 app.set('views', path.join(__dirname, '..', 'views'));
 app.set('view engine', 'ejs')
 app.use(express.static(path.join(__dirname, '..', 'public')));
-app.get('/', (req, res, next) => {
-  res.render('index', { tasks });
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// index page
+app.get('/', async (req, res, next) => {
+  const query = await db.query("SELECT * FROM tasks");
+  const tasks = query.rows;
+  return res.render('index', { tasks });
 });
-app.post('/add', (req, res, next) => {
-  const newTask = req.body.newTask;
-  tasks.push({ "name": newTask, "completed": false });
-  res.redirect('/');
-})
+
+// add task
+app.post('/', async (req, res, next) => {
+  const name = req.body.newTask;
+  await db.query("INSERT INTO tasks (name, completed) VALUES ($1, $2)", [name, false]);
+  return res.redirect('/');
+});
 module.exports = app;
