@@ -60,4 +60,10 @@ app.put('/:id', async (req, res, next) => {
   };
 });
 
+app.delete('/:id', async (req, res, next) => {
+  const id = req.params.id;
+  await db.query("DELETE FROM tasks WHERE id = $1", [id]);
+  res.redirect('/');
+});
+
 module.exports = app;

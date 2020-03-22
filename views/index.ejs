@@ -11,7 +11,9 @@
           <input class="taskItem__checkbox" type="checkbox" name="check" value="<%= task.name %>">
           <%= task.name %>
           <a href="/<%= task.id %>/edit" class="taskItem__btnEdit">Edit</a>
-          <a href="/<%= task.id %>" class="taskItem__btnDelete">Delete</a>
+          <form action="/<%= task.id %>?_method=DELETE" method="POST">
+            <input class="taskItem__btnDelete" type="submit" value="Delete">
+          </form>
         </li>
       <% }) %>
     </ul>
@@ -21,7 +23,9 @@
         <li>
           <input type="checkbox">
           <%= task.name %>
-          <a href="/<%= task.id %>" class="taskItem__btnDelete">Delete</a>
+          <form action="/<%= task.id %>?_method=DELETE" method="POST">
+            <input class="taskItem__btnDelete" type="submit" value="Delete">
+          </form>
         </li>
       <% }) %>
     </ul>
