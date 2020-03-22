@@ -1,0 +1,11 @@
+<%- include('header'); %>
+  <section class="edit">
+    <h2>Edit Task</h2>
+    <form action="/<%= task.id %>?_method=PUT" method="POST">
+      <input id="inputText" class="taskItem_completed" type="text" name="taskName" maxlength="60" value="<%= task.name %>">
+      <input id="inputCheckbox" class="taskItem__checkbox" type="checkbox" name="completed" value="completed" <%= task.completed ? 'checked' : '' %>>
+      <button id="saveItem">Save</button>
+    </form>
+    
+  </section>
+<%- include('footer'); %>

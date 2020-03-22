@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-Do List App</title>
-  <link rel="stylesheet" href="/main.css">
-</head>
-<body>
-  <header class="header">
-    <h1 class="header__title">To-Do List App</h1>
-  </header>
+<%- include('header'); %>
   <section class="tasks">
     <form action="/" method="POST" id="taskForm">
       <input id="inputText" type="text" name="newTask" maxlength="60" placeholder="Add a new task">
@@ -17,24 +6,24 @@
     </form>
     <h2>My Tasks</h2>
     <ul class="todoList">
-      <% tasks.filter((item) => item.completed == false).forEach((task) => { %>
+      <% tasks.filter((item) => item.completed == false).reverse().forEach((task) => { %>
         <li class="taskItem">
           <input class="taskItem__checkbox" type="checkbox" name="check" value="<%= task.name %>">
           <%= task.name %>
-          <a href="/update/<%= task.id %>" class="taskItem__btnEdit">Edit</a>
-          <a href="/delete/<%= task.id %>" class="taskItem__btnDelete">Delete</a>
+          <a href="/<%= task.id %>/edit" class="taskItem__btnEdit">Edit</a>
+          <a href="/<%= task.id %>" class="taskItem__btnDelete">Delete</a>
         </li>
       <% }) %>
     </ul>
     <h2>Completed</h2>
     <ul class="completedList">
-      <% tasks.filter((item) => item.completed == true).forEach((task) => { %>
+      <% tasks.filter((item) => item.completed == true).reverse().forEach((task) => { %>
         <li>
           <input type="checkbox">
           <%= task.name %>
+          <a href="/<%= task.id %>" class="taskItem__btnDelete">Delete</a>
         </li>
       <% }) %>
     </ul>
   </section>
-</body>
-</html>
+<%- include('footer'); %>
