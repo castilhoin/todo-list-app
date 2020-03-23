@@ -9,7 +9,7 @@
       <% tasks.filter((item) => item.completed == false).reverse().forEach((task) => { %>
         <li class="taskItem">
           <input class="taskItem__checkbox" type="checkbox" name="check" value="<%= task.name %>">
-          <%= task.name %>
+          <%- task.name %>
           <a href="/<%= task.id %>/edit" class="taskItem__btnEdit">Edit</a>
           <form action="/<%= task.id %>?_method=DELETE" method="POST">
             <input class="taskItem__btnDelete" type="submit" value="Delete">

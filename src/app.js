@@ -1,14 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const expressSanitizer = require('express-sanitizer');
 const methodOverride = require('method-override');
-const app = express();
 const path = require('path');
 const db = require(path.join(__dirname, '..', 'config', 'database'));
+const app = express();
 app.set('views', path.join(__dirname, '..', 'views'));
 app.set('view engine', 'ejs')
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressSanitizer());
 app.use(methodOverride('_method'));
+
 // index - show tasks
 app.get('/', async (req, res, next) => {
   try {
@@ -24,7 +27,7 @@ app.get('/', async (req, res, next) => {
 // create task
 app.post('/', async (req, res, next) => {
   try {
-    const name = req.body.newTask;
+    const name = req.sanitize(req.body.newTask);
     await db.query("INSERT INTO tasks (name, completed) VALUES ($1, $2)", [name, false]);
     res.redirect('/');
   } catch(err) {
@@ -50,7 +53,7 @@ app.get('/:id/edit', async (req, res, next) => {
 app.put('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
-    const name = req.body.taskName;
+    const name = req.sanitize(req.body.taskName);
     const completed = (req.body.completed === 'completed') ? true : false;
     await db.query("UPDATE tasks SET name = $2, completed = $3 WHERE id = $1", [id, name, completed]);
     res.redirect('/');
@@ -65,5 +68,8 @@ app.delete('/:id', async (req, res, next) => {
   await db.query("DELETE FROM tasks WHERE id = $1", [id]);
   res.redirect('/');
 });
+
+// sanitize
+// set middlewares
 
 module.exports = app;
