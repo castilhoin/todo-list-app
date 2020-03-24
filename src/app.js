@@ -64,12 +64,14 @@ app.put('/:id', async (req, res, next) => {
 });
 
 app.delete('/:id', async (req, res, next) => {
-  const id = req.params.id;
-  await db.query("DELETE FROM tasks WHERE id = $1", [id]);
-  res.redirect('/');
+  try {
+    const id = req.params.id;
+    await db.query("DELETE FROM tasks WHERE id = $1", [id]);
+    res.redirect('/');
+  } catch(err) {
+    console.log('Error: ', err);
+    res.render('error', { err });
+  }
 });
-
-// sanitize
-// set middlewares
 
 module.exports = app;
