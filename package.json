@@ -1,8 +1,9 @@
 {
   "name": "todo-list-app",
   "version": "1.0.0",
-  "description": "To-do list app with Node.js and PostgreeSQL database.",
-  "main": "server.js",
+  "private": true,
+  "description": "To-do list app with Node.js and PostgreSQL database.",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node_modules/nodemon/bin/nodemon.js src/server"
