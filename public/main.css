@@ -17,13 +17,15 @@ body {
   min-height: 100vh;
   margin: 0 auto;
   background-color: #F6F6F6;
+  display: flex;
+  flex-direction: column;
 }
 .header {
   padding: 1rem;
   color: #133849;
 }
 .header__title {
-  font-size: 3.4rem;
+  font-size: 3.4em;
   font-weight: 700;
   margin: 0;
   padding: 0;
@@ -35,7 +37,7 @@ body {
   padding: 0;
 }
 .header__info {
-  font-size: 1.2rem;
+  font-size: 1.2em;
   margin: 0;
   padding: 0;
 }
@@ -46,7 +48,7 @@ body {
   color: #133849;
   margin: 0;
   padding: 1rem;
-  font-size: 1.4rem;
+  font-size: 1.4em;
   font-weight: 700;
 }
 .tasks__list {
@@ -158,10 +160,79 @@ body {
   color: #FFFFFF;
   background-color: #FAA633;
   border-radius: 0 5px 5px 0;
-  font-size: 2rem;
+  font-size: 2em;
   cursor: pointer;
   transition: 0.4s ease-in-out;
 }
 .taskForm__btnSubmit:hover {
   background-color: #DE942C;
+}
+/* edit */
+.edit {
+  padding: 0 1rem;
+  text-align: right;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.editForm {
+  width: 100%;
+}
+.editItem__inputBox {
+  display: flex;
+  justify-content: space-between;
+}
+.editItem__checkCompleted {
+  position: relative;
+  top: 0;
+  width: 52px;
+  height: 52px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: 0.4s;
+}
+.editItem__checkCompleted::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border: 4px solid #D6444B;
+  border-radius: 5px;
+  transition: 0.4s;
+}
+.editItem__checkCompleted:checked::before {
+  content: "\2713";
+  text-align: center;
+  font-size: 2.4em;
+  border: 4px solid #2B9999;
+  background-color: #2B9999;
+  color: #FFFFFF;
+  transition: 0.4s;
+}
+.editItem__input {
+  background-color: #FFFFFF;
+  color: #181818;
+  padding: 1rem;
+  border: 10px solid #CAD9E0;
+  border-radius: 5px;
+  width: 85%;
+  margin-bottom: 1rem;
+}
+.saveItem {
+  background-color: #133849;
+  color: #FFFFFF;
+  border: 0;
+  border-radius: 5px;
+  font-size: 1.2em;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+.saveItem:hover {
+  background-color: #0D2C3A;
 }
