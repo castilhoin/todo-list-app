@@ -4,7 +4,7 @@ const routes = Router();
 
 routes.get("/", TodoController.index);
 routes.post("/", TodoController.create);
-routes.get("/:id", TodoController.read);
+routes.get("/:id", TodoController.edit);
 routes.put("/:id", TodoController.update);
 routes.delete("/:id", TodoController.delete);
 

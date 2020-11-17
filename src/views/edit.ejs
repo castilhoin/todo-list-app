@@ -1,0 +1,14 @@
+<%- include('header'); %>
+  <header class="header">
+    <h1 class="header__subtitle">Editar Tarefa</h1>
+  </header>
+  <section class="edit">
+    <form action="/<%= task.id %>?_method=PUT" method="POST" class="editForm">
+      <div class="editItem__inputBox">
+        <input id="inputCheckbox" class="editItem__checkCompleted" type="checkbox" name="isCompleted" value="isCompleted" <%= task.isCompleted ? 'checked' : '' %>>
+        <input id="inputText" class="editItem__input" type="text" name="taskName" maxlength="60" value="<%= task.name %>">
+      </div>
+      <input type="submit" class="saveItem" value="Salvar">
+    </form>
+  </section>
+<%- include('footer'); %>

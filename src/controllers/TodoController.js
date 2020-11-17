@@ -4,43 +4,50 @@ module.exports = {
   async index(req, res) {
     try {
       const todos = await Todo.findAll();
-      return res.json(todos);
+      return res.render("index", { tasks: todos });
     } catch (err) {
-      return res.json({ message: err.message });
+      return res.render("error", { err: err.message });
     }
   },
   async create(req, res) {
     try {
-      const todo = await Todo.create(req.body);
-      return res.json(todo);
+      const todo = await Todo.create({
+        name: req.body.newTask,
+        isCompleted: false
+      });
+      return res.redirect("/");
     } catch (err) {
-      res.json({ message: err.message });
+      res.render("error", { err: err.message });
     }
   },
-  async read(req, res) {
+  async edit(req, res) {
     try {
       const todo = await Todo.findByPk(req.params.id);
-      return res.json(todo);
+      return res.render("edit", { task: todo });
     } catch (err) {
-      res.json({ message: err.message });
+      res.render("error", { err: err.message });
     }
   },
   async update(req, res) {
     try {
-      const todo = await Todo.update(req.body, {
+      const isCompleted = req.body.isCompleted == "isCompleted" ? true : false;
+      const todo = await Todo.update({
+        name: req.body.taskName,
+        isCompleted: isCompleted
+      }, {
         where: { id: req.params.id },
       });
-      return res.json();
+      return res.redirect("/");
     } catch (err) {
-      res.json({ message: err.message });
+      res.render("error", { err: err.message });
     }
   },
   async delete(req, res) {
     try {
       const todo = await Todo.destroy({ where: { id: req.params.id } });
-      return res.json();
+      return res.redirect("/");
     } catch (err) {
-      res.json({ message: err.message });
+      res.render("error", { err: err.message });
     }
   },
 };

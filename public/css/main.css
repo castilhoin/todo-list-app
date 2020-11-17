@@ -1,0 +1,246 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  background-color: #76a9c0;
+  color: #181818;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  width: 100%;
+  max-width: 600px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  padding: 1rem;
+  color: #133849;
+}
+.header__title {
+  font-size: 3.4em;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+.header__subtitle {
+  font-size: 2.2em;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+.header__info {
+  font-size: 1.2em;
+  margin: 0;
+  padding: 0;
+}
+.tasks {
+  padding: 0 0 5rem 0;
+}
+.tasks__title {
+  color: #133849;
+  margin: 0;
+  padding: 1rem;
+  font-size: 1.4em;
+  font-weight: 700;
+}
+.tasks__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.taskItem {
+  background-color: #ffffff;
+  box-shadow: inset -1px -2px 4px rgba(0, 0, 0, 0.05);
+  transition: 0.4s ease-in-out;
+}
+.taskItem:hover {
+  background-color: #f6f6f6;
+}
+.taskItem__checkbox {
+  display: none;
+}
+.taskItem__label {
+  display: inline-block;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  transition: 0.4s ease-in-out;
+}
+.taskItem__checkbox:checked + .taskItem__label {
+  background-color: #cad9e0;
+}
+.taskItem__controls {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+  text-align: right;
+  font-size: 0.8em;
+}
+.taskItem__checkbox:checked ~ .taskItem__label > .taskItem__controls {
+  opacity: 1;
+  visibility: visible;
+  height: auto;
+  transition: all 0.6s ease-in-out;
+}
+.taskItem__btnEdit {
+  background-color: #2b9999;
+  color: #ffffff;
+  padding: 0.4rem 1rem;
+  margin-right: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  transition: 0.4s ease-in-out;
+}
+.taskItem__btnEdit:hover {
+  background-color: #268787;
+}
+.taskItem__formDelete {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+.taskItem__btnDelete {
+  border: 0;
+  background-color: #d6444b;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 0.95em;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  transition: background 0.4s ease-in-out;
+}
+.taskItem__btnDelete:hover {
+  background-color: #b83b41;
+}
+.finishedItem {
+  background-color: #f6f6f6;
+  transition: 0.4s ease-in-out;
+}
+.finishedItem:hover {
+  background-color: #ececec;
+}
+.finishedItem__label {
+  color: #a5a5a5;
+  text-decoration: line-through;
+}
+.taskForm {
+  position: fixed;
+  width: 100%;
+  max-width: 600px;
+  bottom: 0;
+  background-color: #133849;
+  border-radius: 10px 10px 0 0;
+  padding: 1rem;
+  display: flex;
+}
+.taskForm__inputText {
+  margin: 0;
+  padding: 1rem;
+  color: #133849;
+  background-color: #ffffff;
+  border: 0;
+  border-radius: 5px 0 0 5px;
+  flex: 1;
+}
+.taskForm__btnSubmit {
+  margin: 0;
+  border: 0;
+  width: 50px;
+  color: #ffffff;
+  background-color: #faa633;
+  border-radius: 0 5px 5px 0;
+  font-size: 2em;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+}
+.taskForm__btnSubmit:hover {
+  background-color: #de942c;
+}
+.edit {
+  padding: 0 1rem;
+  text-align: right;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.editForm {
+  width: 100%;
+}
+.editItem__inputBox {
+  display: flex;
+  justify-content: space-between;
+}
+.editItem__checkCompleted {
+  position: relative;
+  top: 0;
+  width: 52px;
+  height: 52px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: 0.4s;
+}
+.editItem__checkCompleted::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border: 4px solid #d6444b;
+  border-radius: 5px;
+  transition: 0.4s;
+}
+.editItem__checkCompleted:checked::before {
+  content: "\2713";
+  text-align: center;
+  font-size: 2.4em;
+  border: 4px solid #2b9999;
+  background-color: #2b9999;
+  color: #ffffff;
+  transition: 0.4s;
+}
+.editItem__input {
+  background-color: #ffffff;
+  color: #181818;
+  padding: 1rem;
+  border: 10px solid #cad9e0;
+  border-radius: 5px;
+  width: 85%;
+  margin-bottom: 1rem;
+}
+.saveItem {
+  background-color: #133849;
+  color: #ffffff;
+  border: 0;
+  border-radius: 5px;
+  font-size: 1.2em;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+.saveItem:hover {
+  background-color: #0d2c3a;
+}
+.error {
+  padding: 0 1rem;
+  text-align: left;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
